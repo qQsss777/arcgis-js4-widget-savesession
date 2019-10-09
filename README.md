@@ -1,9 +1,10 @@
 # Widget SaveSession for ArcGIS API for JavaScript
 
-This is a widget for ArcGIS API for Javascript. It allows you to save your work session via a JSON file :
+This is a widget for ArcGIS API for Javascript 4. It allows you to save your work session via a JSON file :
 - position in the map (2D or 3D)
 - features of the GraphicsLayer present in your application
 
+This widget was inspired by the one created by Robert Scheitlin : https://github.com/softwhere/SaveSession-Widget
 
 It requires the installation of typescript : https://www.typescriptlang.org/index.html#download-links
 
@@ -17,3 +18,4 @@ tsc
 To test it, you can follow this guide to use it : https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-recenter/index.html#4 (paragraph Reference and use the custom widget )
 
 Enjoy :) 
+
