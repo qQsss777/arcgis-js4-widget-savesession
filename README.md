@@ -1,0 +1,1 @@
+# arcgis-js4-widget-savesession
