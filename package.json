@@ -1,0 +1,27 @@
+{
+  "name": "arcgis-js4-widget-savesession",
+  "version": "1.0.0",
+  "description": "Widget for ArcGIS JavaScript API 4.x",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qQsss777/arcgis-js4-widget-savesession.git"
+  },
+  "keywords": [
+    "widgets",
+    "arcgis",
+    "js4"
+  ],
+  "author": "Marc Le Moigne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qQsss777/arcgis-js4-widget-savesession/issues"
+  },
+  "homepage": "https://github.com/qQsss777/arcgis-js4-widget-savesession#readme",
+  "dependencies": {
+    "@types/arcgis-js-api": "^4.12.0"
+  }
+}
