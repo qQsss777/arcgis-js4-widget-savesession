@@ -13,7 +13,11 @@ import Graphic from "esri/Graphic";
 import View = require("esri/views/View");
 
 
-
+//--------------------------------------------------------------------
+//
+//  Interfaces
+//
+//--------------------------------------------------------------------
 
 interface ISession {
     camera: object;
@@ -25,6 +29,12 @@ interface IGraphics {
     title: string;
     features: Array<object>;
 }
+
+//--------------------------------------------------------------------
+//
+//  CSS
+//
+//--------------------------------------------------------------------
 
 const CSS = {
     base: "esri-savesession esri-widget",
@@ -63,12 +73,10 @@ class SaveSession extends declared(Widget) {
     render() {
 
         return (
-            <div vertical layout>
-                <div class="btn-group">
-                    <div bind={this} role="button" class={this.classes(CSS.saveExport)} onclick={this._exportSession}><span class="esri-icon-save" /></div>
-                    <label bind={this} for="files" role="button" class={this.classes(CSS.saveExport)}><span class="esri-icon-upload" /></label>
-                    <input bind={this} id="files" type="file" onchange={this._importSession} style="display:none;" />
-                </div>
+            <div horizontal layout>
+                <div bind={this} role="button" class={this.classes(CSS.saveExport)} onclick={this._exportSession}><span class="esri-icon-save" /></div>
+                <label bind={this} for="files" role="button" class={this.classes(CSS.saveExport)}><span class="esri-icon-upload" /></label>
+                <input bind={this} id="files" type="file" onchange={this._importSession} style="display:none;" />
             </div>
         );
     }
@@ -78,6 +86,8 @@ class SaveSession extends declared(Widget) {
     //  Private methods
     //
     //-------------------------------------------------------------------
+
+    //Export of the current session : viewpoint and graphics in GraphicsLayer
     private async _exportSession() {
         const defToDownload = await this._getJsonData()
         const currentTime: string = Date.now().toString()
@@ -125,7 +135,7 @@ class SaveSession extends declared(Widget) {
     }
 
     private _getGraphicsData(layer: GraphicsLayer) {
-        //we get features (geometry, symobl, attributes)
+        //we get features (geometry, symbol, attributes) of each GraphicsLayer
         const graphicsDefinition = {} as IGraphics;
         const featuresArray: Array<object> = []
         graphicsDefinition.title = layer.title
@@ -146,37 +156,48 @@ class SaveSession extends declared(Widget) {
         a.click();
     }
 
+    //Import of a session from a JSON file
     private _importSession() {
         const fileInput = document.querySelector('#files');
         const reader = new FileReader();
         reader.addEventListener('load', () => {
             const data = JSON.parse(reader.result) as ISession;
+
+            //If 3D app, we update the camera object of the SceneView
             if (this.view.type == '3d' && "camera" in data) {
                 this._changeCamera(data)
             }
+
+            //If 2D app, we update the viewpoint object of the MapView
             else if (this.view.type === '2d' && "viewpoint" in data) {
                 this._changeViewpoint(data)
             }
             else {
                 alert("Pas de données")
             }
-            this._addGraphics(data)
 
+            // We add graphics to the GraphicsLayer
+            this._addGraphics(data)
         });
         reader.readAsText(fileInput.files[0]);
     }
 
+    //Update SceneView Camera
     private _changeCamera(data: ISession) {
         const vPt = Camera.fromJSON(data.camera)
         this.view.camera = vPt
     }
 
+    //Update MapView ViewPoint
     private _changeViewpoint(data: ISession) {
         const vPt = ViewPoint.fromJSON(data.viewpoint)
         this.view.goTo(vPt)
     }
 
+    //Add graphics
     private _addGraphics(data: ISession) {
+
+        //Compare Collection of GraphicsLayer with JSON file and add graphics
         const allCurrentLayers: Collection<GraphicsLayer> = this.view.allLayerViews.map(layer => layer.layer)
             .filter(layer => layer.type === 'graphics') as Collection<GraphicsLayer>
         allCurrentLayers.forEach(layer => {
