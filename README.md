@@ -23,6 +23,7 @@ You need the ArcGIS API for JavaScript Typings too : https://developers.arcgis.c
 >  install npm packages @types/arcgis-js-api
 
 ```shell
+$ npm install -g typescript
 $ npm install
 ```
 
