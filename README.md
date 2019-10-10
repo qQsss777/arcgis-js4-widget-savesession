@@ -10,7 +10,7 @@ It requires the installation of typescript : https://www.typescriptlang.org/inde
 
 You need the ArcGIS API for JavaScript Typings too : https://developers.arcgis.com/javascript/latest/guide/typescript-setup/index.html#install-the-arcgis-api-for-javascript-typings
 
-Then you can run to compile the widget
+Then you can compile the widget with running the command :
 
 ```
 tsc
