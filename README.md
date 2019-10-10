@@ -4,19 +4,37 @@ This is a widget for ArcGIS API for Javascript 4. It allows you to save your wor
 - position in the map (2D or 3D)
 - features of the GraphicsLayer present in your application
 
+![](saves.gif)
+
 This widget was inspired by the one created by Robert Scheitlin : https://github.com/softwhere/SaveSession-Widget
+
+## Installation
+
+### Clone
+
+- Clone this repo to your local machine using `https://github.com/qQsss777/arcgis-js4-widget-savesession.git`
+
+### Setup
 
 It requires the installation of typescript : https://www.typescriptlang.org/index.html#download-links
 
 You need the ArcGIS API for JavaScript Typings too : https://developers.arcgis.com/javascript/latest/guide/typescript-setup/index.html#install-the-arcgis-api-for-javascript-typings
 
+>  install npm packages @types/arcgis-js-api
+
+```shell
+$ npm install
+```
+
 Then you can compile the widget with running the command :
 
+```shell
+$ tsc
 ```
-tsc
-```
+
 To test it, you can follow this guide to use it : https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-recenter/index.html#4 (paragraph Reference and use the custom widget )
 
+The GraphicsLayer must have a title.
 
 ## Example (Optional)
 
