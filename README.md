@@ -17,5 +17,46 @@ tsc
 ```
 To test it, you can follow this guide to use it : https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-recenter/index.html#4 (paragraph Reference and use the custom widget )
 
-Enjoy :) 
+
+## Example (Optional)
+
+```javascript
+// code away!
+
+import WebScene from 'esri/WebScene';
+import SceneView from 'esri/views/SceneView';
+import SaveSession from './app/SaveSession';
+
+const webScene = new WebScene({
+    portalItem: {
+        id: "414a28cfca7a471180e8e952cf14c60f"
+    }
+});
+
+const view = new SceneView({
+    map: webScene,
+    container: "viewDiv"
+});
+
+// the layer where the graphics are sketched
+const graphicsLayer = new GraphicsLayer({
+    title: 'building'
+});
+webmap.add(graphicsLayer);
+
+const savesession = new SaveSession({
+    view
+});
+
+view.ui.add(savesession, "top-right");
+```
+
+
+---
+
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
 
